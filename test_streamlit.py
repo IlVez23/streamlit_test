@@ -30,6 +30,6 @@ if usernumber:
     st.write(f"You wrote {usernumber}")
 
 
-pd.concat(df, pd.Serie([usertext, usernumber]), axis = 0)
+pd.concat(df, pd.Series([usertext, usernumber]), axis = 0)
 
 st.dataframe(df)
