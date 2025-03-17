@@ -17,8 +17,12 @@ if "input_text" not in st.session_state:
     st.session_state.input_text = ""
 
 
-if "input_number" not in st.session_state:
+if "input_num" not in st.session_state:
     st.session_state.input_num = ""
+
+if "df" not in st.session_state:  # Persist the dataframe across reruns
+    st.session_state.df = pd.DataFrame({'name': ['ciaone', 'scoreggione', 'blabla'], 'valori': [12, 34, 76]})
+
 
 # Reset function
 def reset_input_text():
@@ -31,34 +35,31 @@ def reset_input_number():
 
 st.write("Let´s make teh first dataset")
 
-df = pd.DataFrame({
-    'name': ['ciaone', 'scoreggione', 'blabla'],
-    'valori':[12, 34, 76]
-})
-
-st.dataframe(df)
-
-
-usertext = st.text_input("Write something here", st.session_state.input_text)
+usertext = st.text_input("Write something here", value=st.session_state.input_text, key="text_key")
 if usertext:
     st.write(f'You wrote: {usertext}')
 
-# Submit button
+# Submit text button
 if st.button("Submit text"):
     st.write(f"You entered: {usertext}")
-    reset_input_text()  # Clear input field after submitting
+    st.session_state.input_text = ""  # Reset input text immediately
+    st.experimental_rerun()  # Force refresh to clear input
 
-usernumber = st.text_input("Write a number", st.session_state.input_num)
+# Number input
+usernumber = st.text_input("Write a number", value=st.session_state.input_num, key="num_key")
 if usernumber:
     st.write(f"You wrote {usernumber}")
 
-# Submit button
+# Submit number button
 if st.button("Submit number"):
     st.write(f"You entered: {usernumber}")
-    reset_input_number()  # Clear input field after submitting
+    st.session_state.input_num = ""  # Reset input number immediately
+    st.experimental_rerun()  # Force refresh to clear input
 
-line = pd.Series([usertext, usernumber], index = df.columns)
+# Append new entry to DataFrame
+if usertext and usernumber:
+    line = pd.Series([usertext, usernumber], index=st.session_state.df.columns)
+    st.session_state.df = pd.concat([st.session_state.df, pd.DataFrame(line).T], ignore_index=True)
 
-df = pd.concat([df, pd.DataFrame(line).T], axis = 0, ignore_index=True)
-
-st.dataframe(df)
+# Display dataframe
+st.dataframe(st.session_state.df)
