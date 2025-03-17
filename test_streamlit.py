@@ -43,7 +43,7 @@ if usertext:
 if st.button("Submit text"):
     st.write(f"You entered: {usertext}")
     st.session_state.input_text = ""  # Reset input text immediately
-    st.experimental_rerun()  # Force refresh to clear input
+    reset_input_text()  # Force refresh to clear input
 
 # Number input
 usernumber = st.text_input("Write a number", value=st.session_state.input_num, key="num_key")
@@ -54,7 +54,7 @@ if usernumber:
 if st.button("Submit number"):
     st.write(f"You entered: {usernumber}")
     st.session_state.input_num = ""  # Reset input number immediately
-    st.experimental_rerun()  # Force refresh to clear input
+    reset_input_number()  # Force refresh to clear input
 
 # Append new entry to DataFrame
 if usertext and usernumber:
