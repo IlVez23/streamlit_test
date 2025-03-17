@@ -22,10 +22,10 @@ if "input_number" not in st.session_state:
 
 # Reset function
 def reset_input_text():
-    st.session_state.usertext = ""
+    st.session_state.input_text = ""
 
 def reset_input_number():
-    st.session_state.usernumber = ""
+    st.session_state.input_num = ""
 
 
 
