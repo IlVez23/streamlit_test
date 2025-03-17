@@ -21,8 +21,11 @@ if "input_number" not in st.session_state:
     st.session_state.input_num = ""
 
 # Reset function
-def reset_input():
-    st.session_state.input_text = ""
+def reset_input_text():
+    st.session_state.usertext = ""
+
+def reset_input_number():
+    st.session_state.usernumber = ""
 
 
 
@@ -43,7 +46,7 @@ if usertext:
 # Submit button
 if st.button("Submit text"):
     st.write(f"You entered: {usertext}")
-    reset_input()  # Clear input field after submitting
+    reset_input_text()  # Clear input field after submitting
 
 usernumber = st.text_input("Write a number", st.session_state.input_num)
 if usernumber:
@@ -52,7 +55,7 @@ if usernumber:
 # Submit button
 if st.button("Submit number"):
     st.write(f"You entered: {usernumber}")
-    reset_input()  # Clear input field after submitting
+    reset_input_number()  # Clear input field after submitting
 
 line = pd.Series([usertext, usernumber], index = df.columns)
 
