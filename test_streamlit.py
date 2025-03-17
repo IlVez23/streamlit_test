@@ -19,3 +19,17 @@ df = pd.DataFrame({
 })
 
 st.dataframe(df)
+
+
+usertext = st.text_input("Write something here")
+if usertext:
+    st.write(f'You wrote: {usertext}')
+
+usernumber = st.text_input("Write a number")
+if usernumber:
+    st.write(f"You wrote {usernumber}")
+
+
+pd.concat(df, pd.Serie([usertext, usernumber]), axis = 0)
+
+st.dataframe(df)
