@@ -29,7 +29,8 @@ usernumber = st.text_input("Write a number")
 if usernumber:
     st.write(f"You wrote {usernumber}")
 
+line = pd.Series([usertext, usernumber], index = df.columns)
 
-pd.concat(df, pd.Series([usertext, usernumber]), axis = 0)
+pd.concat([df, pd.DataFrame(line).T], axis = 0, ignore_index=True)
 
 st.dataframe(df)
