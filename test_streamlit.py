@@ -31,6 +31,6 @@ if usernumber:
 
 line = pd.Series([usertext, usernumber], index = df.columns)
 
-pd.concat([df, pd.DataFrame(line).T], axis = 0, ignore_index=True)
+df = pd.concat([df, pd.DataFrame(line).T], axis = 0, ignore_index=True)
 
 st.dataframe(df)
