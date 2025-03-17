@@ -41,7 +41,7 @@ if usertext:
     st.write(f'You wrote: {usertext}')
 
 # Submit button
-if st.button("Submit"):
+if st.button("Submit text"):
     st.write(f"You entered: {usertext}")
     reset_input()  # Clear input field after submitting
 
@@ -50,7 +50,7 @@ if usernumber:
     st.write(f"You wrote {usernumber}")
 
 # Submit button
-if st.button("Submit"):
+if st.button("Submit number"):
     st.write(f"You entered: {usernumber}")
     reset_input()  # Clear input field after submitting
 
