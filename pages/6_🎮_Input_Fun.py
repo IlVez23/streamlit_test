@@ -2,15 +2,6 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 
-page = st.sidebar.selectbox("Go to:", ["Home", "Settings", "About"])
-st.write(f"You're on the {page} page!")
-
-st.title("Hello, Streamlit! 👋")
-st.write("This is your first web app in Python!")
-
-if st.button("Click me!"):
-    st.write("Button clicked!")
-
 
 # Initialize session state for text input
 if "input_text" not in st.session_state:
